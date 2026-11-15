@@ -73,7 +73,7 @@ public class TaskController {
 
 
     ){
-        TaskResponse task = taskService.patchTask(id,request);
+        TaskResponse task = taskService.updateTask(id,request);
         return ResponseEntity.ok(task);
     }
 

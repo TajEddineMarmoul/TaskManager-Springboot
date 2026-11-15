@@ -3,6 +3,7 @@ package com.example.taskmanager.mappers;
 import com.example.taskmanager.dtos.CreateTaskRequest;
 import com.example.taskmanager.dtos.PatchTaskRequest;
 import com.example.taskmanager.dtos.TaskResponse;
+import com.example.taskmanager.dtos.UpdateTaskRequest;
 import com.example.taskmanager.enteties.Task;
 import org.mapstruct.*;
 
@@ -23,5 +24,10 @@ public interface TaskMapper {
     @BeanMapping(
             nullValuePropertyMappingStrategy  = NullValuePropertyMappingStrategy.IGNORE
     )
-    void updateTask(PatchTaskRequest taskRequest , @MappingTarget Task task);
+    void patchTask(PatchTaskRequest taskRequest , @MappingTarget Task task);
+
+
+
+    void updateTask(UpdateTaskRequest taskRequest , @MappingTarget Task task);
+
 }

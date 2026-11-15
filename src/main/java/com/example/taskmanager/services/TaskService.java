@@ -4,10 +4,10 @@ import com.example.taskmanager.Exceptions.TaskNotFoundException;
 import com.example.taskmanager.dtos.CreateTaskRequest;
 import com.example.taskmanager.dtos.PatchTaskRequest;
 import com.example.taskmanager.dtos.TaskResponse;
+import com.example.taskmanager.dtos.UpdateTaskRequest;
 import com.example.taskmanager.enteties.Task;
 import com.example.taskmanager.mappers.TaskMapper;
 import com.example.taskmanager.repositories.TaskRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -51,10 +51,21 @@ public class TaskService {
 
         Task task = taskRepository.findById(id).orElseThrow(()-> new TaskNotFoundException(id));
 
+        taskMapper.patchTask(request,task);
+
+
+        Task newTask = taskRepository.save(task);
+        return taskMapper.toResponse(newTask);
+    }
+
+    public TaskResponse updateTask(Long id,  UpdateTaskRequest request) {
+        Task task = taskRepository.findById(id).orElseThrow(()-> new TaskNotFoundException(id));
+
         taskMapper.updateTask(request,task);
 
 
         Task newTask = taskRepository.save(task);
         return taskMapper.toResponse(newTask);
+
     }
 }
