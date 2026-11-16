@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode
 @Table(name = "tasks")
 @NoArgsConstructor
 @AllArgsConstructor
